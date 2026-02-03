@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Love Quiz ❤️</title>
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #ffc0cb, #fff);
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .card {
+        background: white;
+        width: 440px;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        text-align: center;
+    }
+
+    h1 { color: #ff4d6d; }
+
+    .score {
+        color: #ff4d6d;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .option {
+        margin: 10px 0;
+        padding: 12px;
+        border-radius: 25px;
+        border: 2px solid #ff4d6d;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .option:hover {
+        background-color: #ff4d6d;
+        color: white;
+    }
+
+    .warning {
+        color: red;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+
+    .intro {
+        background: linear-gradient(135deg, #ff9aa2, #ff4d6d);
+        color: white;
+        padding: 18px;
+        border-radius: 16px;
+        margin-top: 10px;
+    }
+
+    .hidden { display: none; }
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <div class="score">Score: <span id="score">0</span></div>
+
+    <!-- Q1 -->
+    <div id="q1">
+        <h1>Question 1 ✍️</h1>
+        <p>What is my full name?</p>
+        <div class="option" onclick="wrong(1)">Kaki Shivakumar</div>
+        <div class="option" onclick="correct(1)">Kaki Sivakumar</div>
+        <div class="warning hidden">You don’t love me ah? 😢</div>
+    </div>
+
+    <!-- Q2 -->
+    <div id="q2" class="hidden">
+        <h1>Question 2 🎵</h1>
+        <p>What is my favourite song?</p>
+        <div class="option" onclick="correct(2)">Chikri Chikri</div>
+        <div class="option" onclick="wrong(2)">Chinni gundelo eni ashalo</div>
+        <div class="warning hidden">You don’t love me ah? 😢</div>
+    </div>
+
+    <!-- Q3 -->
+    <div id="q3" class="hidden">
+        <h1>Question 3 🏠</h1>
+        <p>What is my nickname at home?</p>
+        <div class="option" onclick="correct(3)">Chinnoda</div>
+        <div class="option" onclick="wrong(3)">Chinna</div>
+        <div class="warning hidden">You don’t love me ah? 😢</div>
+    </div>
+
+    <!-- Q4 -->
+    <div id="q4" class="hidden">
+        <h1>Question 4 🎬</h1>
+        <p>What is my favourite movie?</p>
+        <div class="option" onclick="wrong(4)">Darling</div>
+        <div class="option" onclick="correct(4)">Mr Perfect</div>
+        <div class="warning hidden">You don’t love me ah? 😢</div>
+    </div>
+
+    <!-- Q5 -->
+    <div id="q5" class="hidden">
+        <h1>Question 5 🌍</h1>
+        <p>What is my favourite place?</p>
+        <div class="option" onclick="correct(5)">Beach place 🌊</div>
+        <div class="option" onclick="wrong(5)">Hill stations ⛰️</div>
+        <div class="warning hidden">You don’t love me ah? 😢</div>
+    </div>
+
+    <!-- Intro -->
+    <div id="intro" class="hidden">
+        <div class="intro">
+            <h2>Just a heads up 😌❤️</h2>
+            <p>
+                From the next questions, things get 18+ more playful and bold 😉  
+                Answer honestly.
+            </p>
+            <div class="option" onclick="goToQ6()">Continue 💕</div>
+        </div>
+    </div>
+
+    <!-- Q6 -->
+    <div id="q6" class="hidden">
+        <h1>Question 6 😉</h1>
+        <p>Which angle do I like most?</p>
+        <div class="option" onclick="wrong(6)">Front angle</div>
+        <div class="option" onclick="correct(6)">back angle ✨</div>
+        <div class="warning hidden">You don’t love me ah? 😢</div>
+    </div>
+
+    <!-- Q7 -->
+    <div id="q7" class="hidden">
+        <h1>Question 7 💭</h1>
+        <p>What do I enjoy the most?</p>
+        <div class="option" onclick="correct(7)">BJ 💕</div>
+        <div class="option" onclick="wrong(7)">S*X</div>
+        <div class="warning hidden">You don’t love me ah? 😢</div>
+    </div>
+
+    <!-- Q8 -->
+    <div id="q8" class="hidden">
+        <h1>Question 8 😍</h1>
+        <p>What do i like the most?</p>
+        <div class="option" onclick="correct(8)">Boobies 💖</div>
+        <div class="option" onclick="wrong(8)">Back Seat 🌄</div>
+        <div class="warning hidden">You don’t love me ah? 😢</div>
+    </div>
+
+    <!-- Q9 -->
+    <div id="q9" class="hidden">
+        <h1>Question 9 💋</h1>
+        <p>What do I like to do with you?</p>
+        <div class="option" onclick="correct(9)">Kiss 😘</div>
+        <div class="option" onclick="wrong(9)">Hug 👋</div>
+        <div class="warning hidden">You don’t love me ah? 😢</div>
+    </div>
+
+    <!-- Q10 -->
+    <div id="q10" class="hidden">
+        <h1>Final Question 💘</h1>
+        <p>Will you be my Valentine?</p>
+        <div class="option" onclick="finish()">Yes ❤️</div>
+        <div class="option" onclick="wrongFinal()">No 😜</div>
+        <div class="warning hidden" id="finalWarn">
+            You don’t have any other option 😌❤️<br>
+            You should click <b>Yes</b>.
+        </div>
+    </div>
+
+    <!-- Result -->
+    <div id="result" class="hidden">
+        <h1>Good choice ❤️</h1>
+        <p>Your final score: <b><span id="finalScore"></span>/10</b></p>
+        <p>I knew it 😍💘</p>
+    </div>
+</div>
+
+<script>
+    let score = 0;
+
+    function correct(q) {
+        score++;
+        moveNext(q);
+    }
+
+    function wrong(q) {
+        showWarning(q);
+        setTimeout(() => moveNext(q), 700);
+    }
+
+    function moveNext(q) {
+        document.getElementById("score").innerText = score;
+        document.getElementById("q" + q).classList.add("hidden");
+
+        if (q === 5) {
+            document.getElementById("intro").classList.remove("hidden");
+        } else if (q < 10) {
+            document.getElementById("q" + (q + 1)).classList.remove("hidden");
+        }
+    }
+
+    function goToQ6() {
+        document.getElementById("intro").classList.add("hidden");
+        document.getElementById("q6").classList.remove("hidden");
+    }
+
+    function showWarning(q) {
+        document.querySelector("#q" + q + " .warning").classList.remove("hidden");
+    }
+
+    function wrongFinal() {
+        document.getElementById("finalWarn").classList.remove("hidden");
+    }
+
+    function finish() {
+        score++;
+        document.getElementById("finalScore").innerText = score;
+        document.getElementById("q10").classList.add("hidden");
+        document.getElementById("result").classList.remove("hidden");
+    }
+</script>
+
+</body>
+</html>
